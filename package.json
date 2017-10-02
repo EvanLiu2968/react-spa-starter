@@ -1,26 +1,21 @@
 {
-  "name": "demo",
+  "name": "react-component",
   "version": "0.1.0",
   "homepage": ".",
   "private": true,
   "dependencies": {
-    "antd": "^2.13.1",
+    "antd": "^2.13.4",
     "axios": "^0.16.2",
     "nprogress": "^0.2.0",
     "object-assign": "4.1.1",
-    "photoswipe": "^4.1.2",
     "promise": "7.1.1",
     "prop-types": "^15.5.10",
-    "rc-banner-anim": "^0.5.13",
     "react": "^15.6.1",
     "react-dev-utils": "^3.0.2",
     "react-dom": "^15.6.1",
-    "react-draft-wysiwyg": "^1.10.0",
-    "react-draggable": "^2.2.6",
     "react-error-overlay": "^1.0.9",
-    "react-redux": "^5.0.5",
-    "react-router": "3.0.2",
-    "recharts": "^1.0.0-alpha.1",
+    "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "screenfull": "^3.3.1",
@@ -73,11 +68,11 @@
     "test": "node scripts/test.js --env=jsdom"
   },
   "proxy": {
-    "/douban/v2":{
-      "target":"http://api.douban.com",
-      "changeOrigin":true,
-      "pathRewrite":{
-        "^/douban/v2":"/v2"
+    "/douban/v2": {
+      "target": "http://api.douban.com",
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/douban/v2": "/v2"
       }
     }
   },

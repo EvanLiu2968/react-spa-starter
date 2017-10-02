@@ -1,12 +1,12 @@
 /**
- * Created by hao.cheng on 2017/4/13.
+ * Created by evanliu2968
  */
 import React, { Component } from 'react';
 import { Menu, Icon, Layout, Badge, Popover } from 'antd';
 import screenfull from 'screenfull';
-import { gitOauthToken, gitOauthInfo } from '../axios';
-import { queryString } from '../utils';
-import avater from '../style/imgs/b1.jpg';
+// import { gitOauthToken, gitOauthInfo } from '../axios';
+import { queryString } from '@/assets/js/util.js';
+import avatar from '@/assets/img/mao.jpg';
 import SiderCustom from './SiderCustom';
 import { connect } from 'react-redux';
 const { Header } = Layout;
@@ -38,14 +38,14 @@ class HeaderCustom extends Component {
         // }
         const _user = JSON.parse(localStorage.getItem('user')) || '测试';
         if (!_user && QueryString.hasOwnProperty('code')) {
-            gitOauthToken(QueryString.code).then(res => {
-                gitOauthInfo(res.access_token).then(info => {
-                    this.setState({
-                        user: info
-                    });
-                    localStorage.setItem('user', JSON.stringify(info));
-                });
-            });
+            // gitOauthToken(QueryString.code).then(res => {
+            //     gitOauthInfo(res.access_token).then(info => {
+            //         this.setState({
+            //             user: info
+            //         });
+            //         localStorage.setItem('user', JSON.stringify(info));
+            //     });
+            // });
         } else {
             this.setState({
                 user: _user
@@ -104,7 +104,7 @@ class HeaderCustom extends Component {
                             <Icon type="notification" />
                         </Badge>
                     </Menu.Item>
-                    <SubMenu title={<span className="avatar"><img src={avater} alt="头像" /><i className="on bottom b-white" /></span>}>
+                    <SubMenu title={<span className="avatar"><img src={avatar} alt="头像" /><i className="on bottom b-white" /></span>}>
                         <MenuItemGroup title="用户中心">
                             <Menu.Item key="setting:1">你好 - {this.props.user.userName}</Menu.Item>
                             <Menu.Item key="setting:2">个人信息</Menu.Item>

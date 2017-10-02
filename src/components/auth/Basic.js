@@ -4,8 +4,8 @@
 import React, { Component } from 'react';
 import { Row, Col, Card } from 'antd';
 import BreadcrumbCustom from '@/components/BreadcrumbCustom';
-import AuthWidget from '@/components/widget/AuthWidget';
-import beauty from '@/style/imgs/beauty.jpg';
+import AuthWidget from '@/components/auth/AuthWidget';
+import beauty from '@/assets/img/jump.jpg';
 
 class Basic extends Component {
     render() {
@@ -32,7 +32,6 @@ class Basic extends Component {
                                             </div>
                                             }
                                         </div>
-
                                     }
                                 </Card>
                             </Col>
