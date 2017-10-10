@@ -2,13 +2,15 @@
  * Created by hao.cheng on 2017/4/15.
  */
 import React from 'react';
-import { Table, Button, Tag } from 'antd';
+import { Table, Button, Tag, Card, Modal } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import axios from 'axios';
+import fetch from '@/assets/js/fetch.js';
 
 class BasicTable extends React.Component {
     state = {
         tableData:[],
+        currentRow:{},
+        detailVisible:false,
         pagination:{
             current:1,
             pageSize:10,
@@ -29,18 +31,19 @@ class BasicTable extends React.Component {
         let start=(this.state.pagination.current-1)*this.state.pagination.pageSize;
         console.log(this.state);
         let count=this.state.pagination.pageSize;
-        axios.get('/douban/v2/movie/top250',{
+        fetch({
+            method:'get',
+            url:'/douban/v2/movie/top250',
             params:{
                 start:start,
                 count:count
             }
         }).then(res=>{
             console.log(res);
-            let data=res.data;
             this.setState({
-                tableData:data.subjects,
+                tableData:res.subjects,
                 pagination:{
-                    total:data.total
+                    total:res.total
                 },
                 loading:false
             });
@@ -61,8 +64,22 @@ class BasicTable extends React.Component {
             this.search();
         });
     };
-    viewDetail = (arr) => {
-        console.log(arr)
+    viewDetail = (record,index,event) => {
+        console.log(record);
+        record.largeImage=record.images.large;
+        console.log(this.props);
+        //console.log(index);
+        //console.log(event.target);
+        this.setState({
+            currentRow:record,
+            detailVisible:true
+        });
+    };
+    closeDetailModal = (e) => {
+        console.log(e);
+        this.setState({
+            detailVisible:false
+        });
     };
     render() {
         const columns = [
@@ -70,8 +87,8 @@ class BasicTable extends React.Component {
                 title: '电影名称',
                 dataIndex: 'title',                
                 key: 'title',
-                render: (value,arr,index) => (
-                    <a href={arr.alt} target="_blank">{value}</a>
+                render: (value,record,index) => (
+                    <a href={record.alt} target="_blank">{value}</a>
                 )
             },
             {
@@ -83,63 +100,33 @@ class BasicTable extends React.Component {
                 title: '标签',
                 dataIndex: 'genres',
                 key: 'genres',
-                render: (value,arr,index) => {
-                    let tags=[];
-                    for (let i=0;i<value.length;i++){
-                        tags.push(<Tag color="pink">{value[i]}</Tag>);
-                    }
+                render: (value,record,index) => {
                     return (
-                        <div>{ tags }</div>
+                        <div>{ value.map((v,i,a)=>{
+                            <Tag color="pink" key={i}>{v}</Tag>
+                        })}</div>
                     )
                 }
             },
             {
                 title: '导演',
-                dataIndex: 'directors',
+                dataIndex: 'directors', //casts
                 key: 'directors',
-                render: (value,arr,index) => {
-                    let links=[];
-                    for (let i=0;i<value.length;i++){
-                        links.push(
-                            <span className={i===0?'':'ant-divider'}>
-                                <a href={value[i].alt} target="_blank">{value[i].name}</a>
-                            </span>
-                        );
-                    }
+                render: (value,record,index) => {
                     return (
-                        // <div>{ links }</div>
                         <div>{ value.map((v,i,a)=>(
-                            <span className={i===0?'':'ant-divider'}>
+                            <span className={i===0?'':'ant-divider'} key={i}>
                                 <a href={v.alt} target="_blank">{v.name}</a>
                             </span>
                         )) }</div>
                     )
                 }
             },
-            // {
-            //     title: '演员',
-            //     dataIndex: 'casts',
-            //     key: 'casts',
-            //     width:'300px',
-            //     render: (value,arr,index) => {
-            //         let links=[];
-            //         for (let i=0;i<value.length;i++){
-            //             links.push(
-            //                 <span className={i===0?'':'ant-divider'}>
-            //                     <a href={value[i].alt} target="_blank">{value[i].name}</a>
-            //                 </span>
-            //             );
-            //         }
-            //         return (
-            //             <div>{ links }</div>
-            //         )
-            //     }
-            // },
             {
                 title: '评分',
                 dataIndex: 'rating',
                 key: 'rating',
-                render: (value,arr,index) => (
+                render: (value,record,index) => (
                     <span>{value.average}/{value.max}</span>
                 )
             },
@@ -147,12 +134,9 @@ class BasicTable extends React.Component {
                 title: '操作',
                 dataIndex: 'id',
                 key: 'id',
-                render: (value, arr, index) => {
-                    let viewDetail=() => {
-                        return this.viewDetail(arr,index);
-                    }
+                render: (value, record, index) => {
                     return (
-                        <Button type="primary" icon="ellipsis" shape="circle" onClick={viewDetail} />
+                        <Button title="查看详情" type="primary" icon="ellipsis" shape="circle" onClick={this.viewDetail.bind(this,record,index)} />
                     )
                 }
             }
@@ -160,13 +144,23 @@ class BasicTable extends React.Component {
         return (
             <div className="gutter-example">
                 <BreadcrumbCustom first="基础组件" second="表格" />
-                <Table columns={columns}
-                    rowKey={record=>record.id}
-                    pagination={this.state.pagination}
-                    loading={this.state.loading}
-                    onChange={this.handleTableChange}
-                    dataSource={this.state.tableData}
-                />
+                <Card>
+                    <Table columns={columns}
+                        rowKey={record=>record.id}
+                        pagination={this.state.pagination}
+                        loading={this.state.loading}
+                        onChange={this.handleTableChange}
+                        dataSource={this.state.tableData}
+                    />
+                </Card>
+                <Modal title="详情" visible={this.state.detailVisible} 
+                    onCancel={this.closeDetailModal} footer={null}>
+                    <img src={`${this.state.currentRow.largeImage}`} style={{
+                        maxWidth:'100%',
+                        display:'block',
+                        margin:'0 auto'
+                    }} />
+                </Modal>
             </div>
         )
     }

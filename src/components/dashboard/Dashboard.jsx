@@ -17,14 +17,14 @@ const option = {
         normal: {
             show: true,
             textStyle: {
-                fontSize: 12
+                fontSize: 11
             },
         }
     },
     legend: {
         x: "center",
         show: false,
-        data: ["朋友", "战友", '亲戚']
+        data: ["UI", "dep", 'dev-dep']
     },
     series: [
 
@@ -35,24 +35,24 @@ const option = {
             focusNodeAdjacency: true,
             roam: true,
             categories: [{
-                name: '朋友',
+                name: 'UI',
                 itemStyle: {
                     normal: {
-                        color: "#009800",
+                        color: "#f04134",
                     }
                 }
             }, {
-                name: '战友',
+                name: 'dep',
                 itemStyle: {
                     normal: {
-                        color: "#4592FF",
+                        color: "#4582FF",
                     }
                 }
             }, {
-                name: '亲戚',
+                name: 'dev-dep',
                 itemStyle: {
                     normal: {
-                        color: "#3592F",
+                        color: "#3582F",
                     }
                 }
             }],
@@ -65,7 +65,7 @@ const option = {
                 }
             },
             force: {
-                repulsion: 1000
+                repulsion: 900
             },
             edgeSymbolSize: [4, 50],
             edgeLabel: {
@@ -78,54 +78,54 @@ const option = {
                 }
             },
             data: [{
-                name: '徐贱云',
+                name: 'react',
                 draggable: true,
             }, {
-                name: '冯可梁',
+                name: 'react-dom',
                 category: 1,
                 draggable: true,
             }, {
-                name: '邓志荣',
+                name: 'react-router',
                 category: 1,
                 draggable: true,
             }, {
-                name: '李荣庆',
+                name: 'redux',
                 category: 1,
                 draggable: true,
             }, {
-                name: '郑志勇',
+                name: 'redux-thunk',
                 category: 1,
                 draggable: true,
             }, {
-                name: '赵英杰',
+                name: 'react-redux',
                 category: 1,
                 draggable: true,
             }, {
-                name: '王承军',
+                name: 'antd',
                 category: 1,
                 draggable: true,
             }, {
-                name: '陈卫东',
+                name: 'less',
                 category: 1,
                 draggable: true,
             }, {
-                name: '邹劲松',
+                name: 'eslint',
                 category: 1,
                 draggable: true,
             }, {
-                name: '赵成',
+                name: 'webpack',
                 category: 1,
                 draggable: true,
             }, {
-                name: '陈现忠',
+                name: 'babel',
                 category: 1,
                 draggable: true,
             }, {
-                name: '陶泳',
+                name: 'jsx',
                 category: 1,
                 draggable: true,
             }, {
-                name: '王德福',
+                name: 'loader',
                 category: 1,
                 draggable: true,
             }],
@@ -133,67 +133,90 @@ const option = {
                 source: 0,
                 target: 1,
                 category: 0,
-                value: '朋友'
+                value: 'dep'
             }, {
                 source: 0,
                 target: 2,
-                value: '战友'
+                value: 'dep'
             }, {
                 source: 0,
                 target: 3,
-                value: '房东'
+                value: 'dep'
             }, {
                 source: 0,
                 target: 4,
-                value: '朋友'
-            }, {
-                source: 1,
-                target: 2,
-                value: '表亲'
+                value: 'dep'
             }, {
                 source: 0,
                 target: 5,
-                value: '朋友'
+                value: 'dep'
             }, {
-                source: 4,
-                target: 5,
-                value: '姑姑'
+                source: 0,
+                target: 6,
+                value: 'UI'
             }, {
-                source: 2,
+                source: 0,
+                target: 7,
+                value: 'dev-dep'
+            }, {
+                source: 0,
+                target: 7,
+                value: 'dev-dep'
+            }, {
+                source: 0,
                 target: 8,
-                value: '叔叔'
+                value: 'dev-dep'
             }, {
                 source: 0,
-                target: 12,
-                value: '朋友'
+                target: 9,
+                value: 'dev-dep'
             }, {
-                source: 6,
-                target: 11,
-                value: '爱人'
-            }, {
-                source: 6,
-                target: 3,
-                value: '朋友'
-            }, {
-                source: 7,
-                target: 5,
-                value: '朋友'
-            }, {
-                source: 9,
+                source: 0,
                 target: 10,
-                value: '朋友'
+                value: 'dep'
+            }, {
+                source: 0,
+                target: 11,
+                value: 'dep'
             }, {
                 source: 3,
-                target: 10,
-                value: '朋友'
+                target: 4,
+                value: 'dep'
             }, {
-                source: 2,
-                target: 11,
-                value: '同学'
+            }, {
+                source: 3,
+                target: 5,
+                value: 'dep'
+            }, {
+            }, {
+                source: 7,
+                target: 8,
+                value: 'dep'
+            }, {
+            }, {
+                source: 7,
+                target: 9,
+                value: 'dep'
+            }, {
+                source: 7,
+                target: 12,
+                value: 'dep'
+            }, {
+                source: 11,
+                target: 9,
+                value: 'dep'
+            }, {
+                source: 11,
+                target: 10,
+                value: 'dep'
+            }, {
+                source: 11,
+                target: 12,
+                value: 'dep'
             }],
             lineStyle: {
                 normal: {
-                    opacity: 0.9,
+                    opacity: 0.8,
                     width: 1,
                     curveness: 0
                 }
@@ -207,7 +230,7 @@ class Dashboard extends React.Component {
             <div className="gutter-example button-demo">
                 <BreadcrumbCustom />
                 <div className="gutter-box">
-                    <Card title="关系图" bordered={false}>
+                    <Card title="React APP 关系图" bordered={false}>
                         <ReactEcharts
                             option={option}
                             style={{height: '400px', width: '100%'}}

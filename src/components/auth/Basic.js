@@ -16,19 +16,18 @@ class Basic extends Component {
                     children={auth => (
                         <Row>
                             <Col span={24}>
-                                <Card bordered={false} bodyStyle={{minHeight: 600}}>
-                                    {!auth.uid && <h2 style={{height: 500}} className="center">登录之后你将看到一张美女图</h2>}
+                                <Card bordered={false} bodyStyle={{minHeight: 500}}>
+                                    {!auth.uid && <h2 style={{height: 500}} className="center">目前您还没有登录，权限不足</h2>}
                                     {
                                         auth.permissions && auth.permissions.includes('auth/authPage/visit') &&
                                         <div style={{textAlign: 'center'}}>
                                             <img src={beauty} alt="" style={{height: 400}} />
                                             {(auth.permissions.includes('auth/authPage/edit') &&
                                             <div>
-                                                <p>看啥子美女，看点美景就行啦~<span role="img" aria-label="" aria-labelledby="">😄😄</span></p>
-                                                <p>管理员身份登录才能看到这两段话</p>
+                                                <p className="text-center">尊贵的VIP会员，新世界·信仰之跃，请您欣赏</p>
                                             </div>) ||
                                             <div>
-                                                <p>管理员登录将看到不一样的效果</p>
+                                                <p>管理员登录，不一样的世界</p>
                                             </div>
                                             }
                                         </div>

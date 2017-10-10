@@ -8,6 +8,7 @@ import themes from '@/assets/theme';
 
 class BreadcrumbCustom extends React.Component {
     state = {
+        showThemeSwitcher:false,
         switcherOn: false,
         theme: null,
         themes: JSON.parse(localStorage.getItem('themes')) || [
@@ -54,8 +55,8 @@ class BreadcrumbCustom extends React.Component {
             <span>
                 <Breadcrumb style={{ margin: '12px 0' }}>
                     <Breadcrumb.Item><Link to={'/app/dashboard/index'}>首页</Link></Breadcrumb.Item>
-                        {first}
-                        {second}
+                    {first}
+                    {second}
                 </Breadcrumb>
                 <div className={`switcher dark-white ${this.state.switcherOn ? 'active' : ''}`}>
                     <a className="sw-btn dark-white" onClick={this.switcherOn}>
@@ -66,6 +67,9 @@ class BreadcrumbCustom extends React.Component {
                     </div>
                 </div>
                 <style>{`
+                    .switcher {
+                        display:${this.state.showThemeSwitcher?'block':'none'} !important;
+                    }
                     ${this.state.theme ?
                     `
                     .custom-theme {

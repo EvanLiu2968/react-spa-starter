@@ -47,18 +47,19 @@ service.interceptors.response.use(
 		* 如通过xmlhttprequest 状态码标识 逻辑可写在下面error中
 		*/
 		const res = response.data;
-		if (res.status !== 200) {
-			message.error(res.msg || '请求异常');
+		if (!res) {
+		// if (res.status !== 200) {
+			// message.error(res.msg || '请求异常');
 			// 400:非法请求; 401:未授权;  403:服务器拒绝请求; 404:资源未找到
-			if (res.status === 401 || res.status === 403) {
-				// MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '提示', {
-				// 	confirmButtonText: '重新登录',
-				// 	cancelButtonText: '取消',
-				// 	type: 'warning'
-				// }).then(() => {
-				// 	store.commit('loginOut');
-				// })
-			}
+			// if (res.status === 401 || res.status === 403) {
+			// 	MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '提示', {
+			// 		confirmButtonText: '重新登录',
+			// 		cancelButtonText: '取消',
+			// 		type: 'warning'
+			// 	}).then(() => {
+			// 		store.commit('loginOut');
+			// 	})
+			// }
 			return Promise.reject(res);
 		} else {
 			return res;
