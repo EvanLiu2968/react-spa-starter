@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Layout } from 'antd';
 import '@/assets/less/index.less';
+import './components/message/MessageBox.less';
+import './components/message/Toast.less';
 import SiderCustom from './components/SiderCustom';
 import HeaderCustom from './components/HeaderCustom';
 import { receiveData } from './action';

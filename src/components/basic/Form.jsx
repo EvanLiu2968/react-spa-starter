@@ -4,29 +4,30 @@
 import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
+import Message from '../message';
 const FormItem = Form.Item;
 const Option = Select.Option;
 
 const residences = [{
-    value: 'zhejiang',
-    label: 'Zhejiang',
+    value: 'guangdong',
+    label: '广东',
     children: [{
-        value: 'hangzhou',
-        label: 'Hangzhou',
+        value: 'guangzhou',
+        label: '广州',
         children: [{
-            value: 'xihu',
-            label: 'West Lake',
+            value: 'tianhe',
+            label: '天河',
         }],
     }],
 }, {
-    value: 'jiangsu',
-    label: 'Jiangsu',
+    value: 'hunan',
+    label: '湖南',
     children: [{
-        value: 'nanjing',
-        label: 'Nanjing',
+        value: 'hengyang',
+        label: '衡阳',
         children: [{
-            value: 'zhonghuamen',
-            label: 'Zhong Hua Men',
+            value: 'hengshan',
+            label: '衡山',
         }],
     }],
 }];
@@ -61,6 +62,31 @@ class BasicForms extends Component {
             form.validateFields(['confirm'], { force: true });
         }
         callback();
+    };
+    messagebox = (type) => {
+        if(type === 'alert'){
+            Message.alert('你不要再点击了！',{
+                type:'error'
+            })
+        }else if(type === 'confirm'){
+            Message.confirm('你确定要点击确定按钮吗',{
+                type:'info'
+            }).then(()=>{
+                alert('已点击确定')
+            })
+        }else if(type === 'msg'){
+            Message.msg('要duck不要bug',{
+                type:'warning',
+                showMask:false
+            })
+        }else{
+            Message({
+                message:(
+                    <BreadcrumbCustom first="基础组件" second="表单" />
+                ),
+                type:'success'
+            })
+        }
     };
     render() {
         const { getFieldDecorator } = this.props.form;
@@ -169,7 +195,7 @@ class BasicForms extends Component {
                                     label="常住地址"
                                 >
                                     {getFieldDecorator('residence', {
-                                        initialValue: ['zhejiang', 'hangzhou', 'xihu'],
+                                        initialValue: ['guangdong', 'guangzhou', 'tianhe'],
                                         rules: [{ type: 'array', required: true, message: '请选择你的常住地址!' }],
                                     })(
                                         <Cascader options={residences} />
@@ -200,7 +226,7 @@ class BasicForms extends Component {
                                             )}
                                         </Col>
                                         <Col span={12}>
-                                            <Button size="large">获取验证码</Button>
+                                            <Button size="large" >获取验证码</Button>
                                         </Col>
                                     </Row>
                                 </FormItem>
@@ -213,6 +239,12 @@ class BasicForms extends Component {
                                 </FormItem>
                                 <FormItem {...tailFormItemLayout}>
                                     <Button type="primary" htmlType="submit" size="large">注册</Button>
+                                </FormItem>
+                                <FormItem {...tailFormItemLayout}>
+                                    <Button type="primary" onClick={this.messagebox.bind(this,'alert')} size="large">alert</Button>
+                                    <Button type="primary" onClick={this.messagebox.bind(this,'confirm')} size="large">confirm</Button>
+                                    <Button type="primary" onClick={this.messagebox.bind(this,'msg')} size="large">msgbox</Button>
+                                    <Button type="primary" onClick={this.messagebox.bind(this,'jsx')} size="large">jsx</Button>
                                 </FormItem>
                             </Form>
                         </Card>

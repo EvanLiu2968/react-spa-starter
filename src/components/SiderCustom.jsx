@@ -77,6 +77,7 @@ class SiderCustom extends Component {
                         key="/app/basic"
                         title={<span><Icon type="copy" /><span className="nav-text">基础组件</span></span>}
                     >
+                        <Menu.Item key="/app/basic/basicModal"><Link to={'/app/basic/basicModal'}>消息弹框</Link></Menu.Item>
                         <Menu.Item key="/app/basic/basicForm"><Link to={'/app/basic/basicForm'}>表单</Link></Menu.Item>
                         <Menu.Item key="/app/basic/basicTable"><Link to={'/app/basic/basicTable'}>表格</Link></Menu.Item>
                     </SubMenu>
