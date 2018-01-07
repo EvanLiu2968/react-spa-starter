@@ -80,6 +80,7 @@ class SiderCustom extends Component {
                         <Menu.Item key="/app/basic/basicModal"><Link to={'/app/basic/basicModal'}>消息弹框</Link></Menu.Item>
                         <Menu.Item key="/app/basic/basicForm"><Link to={'/app/basic/basicForm'}>表单</Link></Menu.Item>
                         <Menu.Item key="/app/basic/basicTable"><Link to={'/app/basic/basicTable'}>表格</Link></Menu.Item>
+                        <Menu.Item key="/app/basic/basicList"><Link to={'/app/basic/basicList'}>列表</Link></Menu.Item>
                     </SubMenu>
                     <SubMenu
                         key="/app/auth"

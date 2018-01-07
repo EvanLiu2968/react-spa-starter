@@ -31,6 +31,11 @@ const BasicTable = (location, callback) => {
         callback(null, require('../components/basic/Table').default);
     }, 'BasicTable');
 };
+const BasicList = (location, callback) => {
+    require.ensure([], require => {
+        callback(null, require('../components/basic/List').default);
+    }, 'BasicList');
+};
 const AuthBasic = (location, callback) => {
     require.ensure([], require => {
         callback(null, require('../components/auth/Basic').default);
@@ -55,6 +60,7 @@ export default class CRouter extends Component {
                             <Route path={'basicForm'} getComponent={BasicForm} />
                             <Route path={'basicModal'} getComponent={BasicModal} />
                             <Route path={'basicTable'} getComponent={BasicTable} />
+                            <Route path={'basicList'} getComponent={BasicList} />
                         </Route>
                         <Route path={'dashboard/index'} getComponent={Dashboard} />
                         <Route path="auth">

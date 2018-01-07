@@ -2,6 +2,7 @@
  * Created by hao.cheng on 2017/4/22.
  */
 import React from 'react';
+import ReactDom from 'react-dom';
 import { Breadcrumb, Switch, Icon } from 'antd';
 import { Link } from 'react-router';
 import themes from '@/assets/theme';
