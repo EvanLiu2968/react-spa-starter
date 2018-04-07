@@ -64,7 +64,8 @@
     "analyze": "source-map-explorer build/static/js/main.*",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "ii": "npm install --registry https://registry.npm.taobao.org"
   },
   "proxy": {
     "/douban/v2": {

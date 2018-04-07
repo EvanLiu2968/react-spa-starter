@@ -1,11 +1,13 @@
 # react-component
-react SPA 解决方案
+
+React SPA 解决方案
 
 ### 前言
-主要对通用的模块做了集成的工作。
-构建工具基于creat-react-app
+
+主要对通用的模块做了集成的工作，构建工具基于creat-react-app
 
 ### 主要模块
+
 - react
 - antd
 - axios
@@ -13,7 +15,8 @@ react SPA 解决方案
 - redux
 
 ### 代码目录
-```js
+
+```
 +-- build                            ---打包的文件目录
 +-- config                           ---npm run eject 后的配置文件目录
 +-- node_modules                     ---npm下载文件目录
@@ -37,14 +40,24 @@ react SPA 解决方案
 --- .eslintrc                        ---自定义eslint配置文件，包括增加的react jsx语法限制
 --- package.json                     ---包括了部分配置，如proxy，请自行阅读               
 ```
+
 ### 安装步骤
- - 设置npm镜像地址 npm config set registry https://registry.npm.taobao.org	
- - 或使用cnpm install  //安装cnpm: npm install cnpm -g
+```
+npm ii
+```
+或者
+```
+# 设置npm镜像地址
+npm config set registry https://registry.npm.taobao.org
+npm i
+```
 
 ### 本地开发
+
 `npm run start` 
 
 ### 构建生产
+
 `npm run build`
 
 ### 浏览器支持
