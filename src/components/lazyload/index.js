@@ -18,17 +18,17 @@ const getDisplayName = WrappedComponent => WrappedComponent.displayName || Wrapp
 
 export const lazyload = (options = {}) => function lazyload(WrappedComponent) {
   return class LazyLoadDecorated extends Component {
-  constructor() {
-  super();
-  this.displayName = `LazyLoad${getDisplayName(WrappedComponent)}`;
-  }
+    constructor() {
+      super();
+      this.displayName = `LazyLoad${getDisplayName(WrappedComponent)}`;
+    }
 
-  render() {
-  return (
-  <LazyLoad {...options}>
-    <WrappedComponent {...this.props} />
-  </LazyLoad>
-  );
-  }
+    render() {
+      return (
+        <LazyLoad {...options}>
+          <WrappedComponent {...this.props} />
+        </LazyLoad>
+      );
+    }
   };
 };

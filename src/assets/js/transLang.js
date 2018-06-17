@@ -15,8 +15,8 @@ function Traditionalized(cc){
   var str='',ss=JTPYStr(),tt=FTPYStr();
   for(var i=0;i<cc.length;i++)
   {
-    if(cc.charCodeAt(i)>10000&&ss.indexOf(cc.charAt(i))!=-1)str+=tt.charAt(ss.indexOf(cc.charAt(i)));
-      else str+=cc.charAt(i);
+  if(cc.charCodeAt(i)>10000&&ss.indexOf(cc.charAt(i))!=-1)str+=tt.charAt(ss.indexOf(cc.charAt(i)));
+    else str+=cc.charAt(i);
   }
   return str;
 }
@@ -25,8 +25,8 @@ function Simplized(cc){
   var str='',ss=JTPYStr(),tt=FTPYStr();
   for(var i=0;i<cc.length;i++)
   {
-    if(cc.charCodeAt(i)>10000&&tt.indexOf(cc.charAt(i))!=-1)str+=ss.charAt(tt.indexOf(cc.charAt(i)));
-      else str+=cc.charAt(i);
+  if(cc.charCodeAt(i)>10000&&tt.indexOf(cc.charAt(i))!=-1)str+=ss.charAt(tt.indexOf(cc.charAt(i)));
+    else str+=cc.charAt(i);
   }
   return str;
 }
@@ -35,9 +35,9 @@ function transText(str,lang) {
   if( !str )return ""
 
   if(lang === 'zh-tw'){
-    return Traditionalized(str)
+  return Traditionalized(str)
   } else if(lang==='zh-cn') {
-    return Simplized(str)
+  return Simplized(str)
   }
 }
 
@@ -49,30 +49,30 @@ function transBody(lang,fobj) {
   if(typeof window === 'undefined') return; //避免服务端调用
   // start
   if(typeof(fobj)=="object"){
-    var obj=fobj.childNodes
+  var obj=fobj.childNodes
   } else {
-    var obj=document.body.childNodes
+  var obj=document.body.childNodes
   }
   for(var i=0;i<obj.length;i++){
-    var OO=obj.item(i);
-    // 忽略转换的dom
-    if( "||BR|HR|TEXTAREA|".indexOf("|"+OO.tagName+"|")>0 || $(OO).data('translang')=='ignore' )continue;
-    // transfrom lang
-    if(OO.title!=""&&OO.title!=null)OO.title=transText(OO.title,lang);
-    if(OO.alt!=""&&OO.alt!=null)OO.alt=transText(OO.alt,lang);
-    if(OO.tagName=="INPUT"&&OO.value!="")OO.value=transText(OO.value,lang);
-    if(OO.tagName=="INPUT"&&OO.type=="text"&&OO.placeholder!=""&&OO.placeholder!=null)OO.placeholder=transText(OO.placeholder,lang);
-    if(OO.tagName=="SELECT")OO.value=transText(OO.value,lang);
-    // 
-    if(OO.nodeType==3){
-      OO.data=transText(OO.data,lang);
-      OO.innerHTML=transText(OO.innerHTML,lang);
-    }
-    else transBody(lang,OO)
+  var OO=obj.item(i);
+  // 忽略转换的dom
+  if( "||BR|HR|TEXTAREA|".indexOf("|"+OO.tagName+"|")>0 || $(OO).data('translang')=='ignore' )continue;
+  // transfrom lang
+  if(OO.title!=""&&OO.title!=null)OO.title=transText(OO.title,lang);
+  if(OO.alt!=""&&OO.alt!=null)OO.alt=transText(OO.alt,lang);
+  if(OO.tagName=="INPUT"&&OO.value!="")OO.value=transText(OO.value,lang);
+  if(OO.tagName=="INPUT"&&OO.type=="text"&&OO.placeholder!=""&&OO.placeholder!=null)OO.placeholder=transText(OO.placeholder,lang);
+  if(OO.tagName=="SELECT")OO.value=transText(OO.value,lang);
+  // 
+  if(OO.nodeType==3){
+    OO.data=transText(OO.data,lang);
+    OO.innerHTML=transText(OO.innerHTML,lang);
+  }
+  else transBody(lang,OO)
   }
 }
 
 module.exports = {
-  transText,        //node端、客户端均可使用
-  transBody,        //客户端递归dom树转换中文
+  transText,    //node端、客户端均可使用
+  transBody,    //客户端递归dom树转换中文
 }

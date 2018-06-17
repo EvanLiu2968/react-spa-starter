@@ -16,9 +16,9 @@ const store = createStore(reducer, applyMiddleware(...middleware));
 console.log(store.getState());
 
 ReactDOM.render(
-    <Provider store={store}>
-        <CRouter store={store} />
-    </Provider>
+  <Provider store={store}>
+    <CRouter store={store} />
+  </Provider>
  ,
   document.getElementById('root')
 );

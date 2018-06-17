@@ -12,67 +12,67 @@ import NotFound from '../components/auth/NotFound';
 
 
 const Dashboard = (location, callback) => { // 异步加载
-    require.ensure([], require => {
-        callback(null, require('../components/dashboard/Dashboard').default);  //export default则需要加.default
-    }, 'Dashboard'); //对应打包js的[name],可省略
+  require.ensure([], require => {
+    callback(null, require('../components/dashboard/Dashboard').default);  //export default则需要加.default
+  }, 'Dashboard'); //对应打包js的[name],可省略
 };
 const BasicForm = (location, callback) => {
-    require.ensure([], require => {
-        callback(null, require('../components/basic/Form').default);
-    }, 'BasicForm');
+  require.ensure([], require => {
+    callback(null, require('../components/basic/Form').default);
+  }, 'BasicForm');
 };
 const BasicModal = (location, callback) => {
-    require.ensure([], require => {
-        callback(null, require('../components/basic/Modal').default);
-    }, 'BasicModal');
+  require.ensure([], require => {
+    callback(null, require('../components/basic/Modal').default);
+  }, 'BasicModal');
 };
 const BasicTable = (location, callback) => {
-    require.ensure([], require => {
-        callback(null, require('../components/basic/Table').default);
-    }, 'BasicTable');
+  require.ensure([], require => {
+    callback(null, require('../components/basic/Table').default);
+  }, 'BasicTable');
 };
 const BasicList = (location, callback) => {
-    require.ensure([], require => {
-        callback(null, require('../components/basic/List').default);
-    }, 'BasicList');
+  require.ensure([], require => {
+    callback(null, require('../components/basic/List').default);
+  }, 'BasicList');
 };
 const AuthBasic = (location, callback) => {
-    require.ensure([], require => {
-        callback(null, require('../components/auth/Basic').default);
-    }, 'AuthBasic');
+  require.ensure([], require => {
+    callback(null, require('../components/auth/Basic').default);
+  }, 'AuthBasic');
 };
 
 
 export default class CRouter extends Component {
-    requireAuth = (permission, component) => {
-        const { store } = this.props;
-        const { auth } = store.getState().httpData;
-        if (!auth || !auth.data.permissions.includes(permission)) hashHistory.replace('/404');
-        return component;
-    };
-    render() {
-        return (
-            <Router history={hashHistory}>
-                <Route path={'/'} components={Page}>
-                    <IndexRedirect to="/app/dashboard/index" />
-                    <Route path={'app'} component={App}>
-                        <Route path={'basic'}>
-                            <Route path={'basicForm'} getComponent={BasicForm} />
-                            <Route path={'basicModal'} getComponent={BasicModal} />
-                            <Route path={'basicTable'} getComponent={BasicTable} />
-                            <Route path={'basicList'} getComponent={BasicList} />
-                        </Route>
-                        <Route path={'dashboard/index'} getComponent={Dashboard} />
-                        <Route path="auth">
-                            <Route path="basic" getComponent={AuthBasic} />
-                            <Route path="routerEnter" component={(props) => this.requireAuth('auth/testPage', <RouterEnter {...props} />)} />
-                        </Route>
-                    </Route>
-                    <Route path={'login'} components={Login} />
-                    <Route path={'403'} component={Denied} />
-                    <Route path={'404'} component={NotFound} />
-                </Route>
-            </Router>
-        )
-    }
+  requireAuth = (permission, component) => {
+    const { store } = this.props;
+    const { auth } = store.getState().httpData;
+    if (!auth || !auth.data.permissions.includes(permission)) hashHistory.replace('/404');
+    return component;
+  };
+  render() {
+    return (
+      <Router history={hashHistory}>
+        <Route path={'/'} components={Page}>
+          <IndexRedirect to="/app/dashboard/index" />
+          <Route path={'app'} component={App}>
+            <Route path={'basic'}>
+              <Route path={'basicForm'} getComponent={BasicForm} />
+              <Route path={'basicModal'} getComponent={BasicModal} />
+              <Route path={'basicTable'} getComponent={BasicTable} />
+              <Route path={'basicList'} getComponent={BasicList} />
+            </Route>
+            <Route path={'dashboard/index'} getComponent={Dashboard} />
+            <Route path="auth">
+              <Route path="basic" getComponent={AuthBasic} />
+              <Route path="routerEnter" component={(props) => this.requireAuth('auth/testPage', <RouterEnter {...props} />)} />
+            </Route>
+          </Route>
+          <Route path={'login'} components={Login} />
+          <Route path={'403'} component={Denied} />
+          <Route path={'404'} component={NotFound} />
+        </Route>
+      </Router>
+    )
+  }
 }

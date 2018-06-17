@@ -12,17 +12,17 @@ import MyComponent from './MyComponent';
 /* 懒加载图片 */
 const Img=(
   <div className="list">
-    <ImgLazyLoad height={200} offset={100}>
-      <img src="tiger.jpg" />
-    </ImgLazyLoad>
+  <ImgLazyLoad height={200} offset={100}>
+    <img src="tiger.jpg" />
+  </ImgLazyLoad>
   </div>
 )
 /* 懒加载组件、jsx */
 const LazyLoad=(
   <div className="list">
-    <LazyLoad height={200} once>
-      <MyComponent />
-    </LazyLoad>
+  <LazyLoad height={200} once>
+    <MyComponent />
+  </LazyLoad>
   </div>
 )
 ```
