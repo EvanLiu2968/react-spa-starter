@@ -3,6 +3,13 @@
   "version": "0.1.0",
   "homepage": ".",
   "private": true,
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "build": "node scripts/build.js",
+    "analyze": "source-map-explorer build/static/js/main.*",
+    "test": "node scripts/test.js --env=jsdom",
+    "ii": "npm install --registry https://registry.npm.taobao.org"
+  },
   "dependencies": {
     "antd": "^2.13.4",
     "axios": "^0.16.2",
@@ -59,13 +66,6 @@
     "webpack": "2.6.1",
     "webpack-dev-server": "2.5.0",
     "webpack-manifest-plugin": "1.1.0"
-  },
-  "scripts": {
-    "analyze": "source-map-explorer build/static/js/main.*",
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom",
-    "ii": "npm install --registry https://registry.npm.taobao.org"
   },
   "proxy": {
     "/douban/v2": {

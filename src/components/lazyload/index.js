@@ -3,7 +3,7 @@
  */
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
-import Lazyload from './lazyload';
+import LazyLoad from './lazyload';
 
 const ImgLazyLoad = LazyLoad;
 
@@ -11,24 +11,24 @@ const ImgLazyLoad = LazyLoad;
 export default ImgLazyLoad;
 
 /* 懒加载组件 */
-export const LazyLoad;
+// export const LazyLoad;
 
 /* 自定义懒加载组件 */
 const getDisplayName = WrappedComponent => WrappedComponent.displayName || WrappedComponent.name || 'Component';
 
 export const lazyload = (options = {}) => function lazyload(WrappedComponent) {
   return class LazyLoadDecorated extends Component {
-    constructor() {
-      super();
-      this.displayName = `LazyLoad${getDisplayName(WrappedComponent)}`;
-    }
+  constructor() {
+  super();
+  this.displayName = `LazyLoad${getDisplayName(WrappedComponent)}`;
+  }
 
-    render() {
-      return (
-        <LazyLoad {...options}>
-          <WrappedComponent {...this.props} />
-        </LazyLoad>
-      );
-    }
+  render() {
+  return (
+  <LazyLoad {...options}>
+    <WrappedComponent {...this.props} />
+  </LazyLoad>
+  );
+  }
   };
 };

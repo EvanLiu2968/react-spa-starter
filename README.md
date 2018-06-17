@@ -41,24 +41,18 @@ React SPA 解决方案
 --- package.json                     ---包括了部分配置，如proxy，请自行阅读               
 ```
 
-### 安装步骤
-```
-npm ii
-```
-或者
-```
-# 设置npm镜像地址
-npm config set registry https://registry.npm.taobao.org
-npm i
-```
+### 开始
 
-### 本地开发
+```bash
+# 安装项目依赖
+npm install
 
-`npm run start` 
+# 构建开发环境
+npm run dev
 
-### 构建生产
-
-`npm run build`
+# 构建生产环境
+npm run build
+```
 
 ### 浏览器支持
 
