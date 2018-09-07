@@ -1,4 +1,4 @@
-# react-component
+# react-spa-starter
 
 React SPA 解决方案
 
